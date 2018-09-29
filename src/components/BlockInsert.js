@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
-import { Portal } from "react-portal";
-import { Node } from "slate";
+import styled from "react-emotion";
 import { Editor, findDOMNode } from "slate-react";
-import { isEqual } from "lodash";
-import styled, { withTheme } from "styled-components";
+import { Node } from "slate";
 import { PlusIcon } from "outline-icons";
+import { Portal } from "react-portal";
+import { isEqual } from "lodash";
+import { withTheme } from "emotion-theming";
 
 type Props = {
   editor: Editor,

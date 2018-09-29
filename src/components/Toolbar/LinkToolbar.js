@@ -1,14 +1,15 @@
 // @flow
 import * as React from "react";
-import { findDOMNode } from "react-dom";
-import { Node } from "slate";
-import { Editor, findDOMNode as slateFindDOMNode } from "slate-react";
 import ArrowKeyNavigation from "boundless-arrow-key-navigation/build";
-import styled, { withTheme } from "styled-components";
 import keydown from "react-keydown";
+import styled from "react-emotion";
 import { CloseIcon, OpenIcon, TrashIcon } from "outline-icons";
-import type { SearchResult } from "../../types";
+import { Editor, findDOMNode as slateFindDOMNode } from "slate-react";
+import { Node } from "slate";
+import { findDOMNode } from "react-dom";
+import { withTheme } from "emotion-theming";
 import Flex from "../Flex";
+import type { SearchResult } from "../../types";
 import LinkSearchResult from "./LinkSearchResult";
 import ToolbarButton from "./ToolbarButton";
 
