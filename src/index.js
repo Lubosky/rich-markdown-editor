@@ -31,6 +31,7 @@ type Props = {
   plugins?: Plugin[],
   portalRef?: PortalRef,
   autoFocus?: boolean,
+  hideBlockInsert?: boolean,
   readOnly?: boolean,
   toc?: boolean,
   dark?: boolean,
@@ -60,6 +61,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
   static defaultProps = {
     defaultValue: "",
     placeholder: "Write something nice…",
+    hideBlockInsert: false,
     onImageUploadStart: () => {},
     onImageUploadStop: () => {},
   };
@@ -254,6 +256,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
   render = () => {
     const {
       readOnly,
+      hideBlockInsert,
       toc,
       pretitle,
       placeholder,
@@ -294,6 +297,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
                 <Toolbar value={this.state.editorValue} editor={this.editor} />
               )}
             {!readOnly &&
+              !hideBlockInsert &&
               this.editor && (
                 <BlockInsert
                   editor={this.editor}
