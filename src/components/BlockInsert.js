@@ -7,9 +7,11 @@ import { PlusIcon } from "outline-icons";
 import { Portal } from "react-portal";
 import { isEqual } from "lodash";
 import { withTheme } from "emotion-theming";
+import type { PortalRef } from "../types";
 
 type Props = {
   editor: Editor,
+  forwardedRef?: PortalRef,
   theme: Object,
 };
 
@@ -92,8 +94,6 @@ class BlockInsert extends React.Component<Props, State> {
     ev.preventDefault();
     ev.stopPropagation();
 
-    this.setState({ active: false });
-
     const { editor } = this.props;
 
     editor.change(change => {
@@ -128,11 +128,12 @@ class BlockInsert extends React.Component<Props, State> {
 
     return (
       <Portal>
-        <Trigger active={this.state.active} style={style}>
-          <PlusIcon
-            onClick={this.handleClick}
-            color={theme.blockToolbarTrigger}
-          />
+        <Trigger
+          active={this.state.active}
+          innerRef={this.props.forwardedRef}
+          style={style}
+        >
+          <PlusIcon onClick={this.handleClick} color={theme.triggerTrigger} />
         </Trigger>
       </Portal>
     );

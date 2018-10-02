@@ -1,10 +1,10 @@
 // @flow
-import * as React from "react";
+import type { Element, ElementRef, Node as NodeType } from "react";
 import { Value, Change, Node } from "slate";
 import { Editor } from "slate-react";
 
 export type SlateNodeProps = {
-  children: React.Node,
+  children: NodeType,
   readOnly: boolean,
   attributes: Object,
   value: Value,
@@ -17,6 +17,10 @@ export type Plugin = {
   validateNode?: Node => *,
   onClick?: (SyntheticEvent<*>) => *,
   onKeyDown?: (SyntheticKeyboardEvent<*>, Change) => *,
+};
+
+export type PortalRef = {
+  current: null | ElementRef<Element<*>>,
 };
 
 export type SearchResult = {
