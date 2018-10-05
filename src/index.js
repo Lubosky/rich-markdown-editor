@@ -33,6 +33,7 @@ type Props = {
   autoFocus?: boolean,
   hideBlockInsert?: boolean,
   readOnly?: boolean,
+  spellCheck?: boolean,
   toc?: boolean,
   dark?: boolean,
   schema?: Schema,
@@ -60,10 +61,11 @@ type State = {
 class RichMarkdownEditor extends React.PureComponent<Props, State> {
   static defaultProps = {
     defaultValue: "",
-    placeholder: "Write something nice…",
     hideBlockInsert: false,
     onImageUploadStart: () => {},
     onImageUploadStop: () => {},
+    placeholder: "Write something nice…",
+    spellCheck: false,
   };
 
   editor: Editor;
@@ -215,6 +217,11 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
     );
   };
 
+  isSpellCheckEnabled = () => {
+    const { readOnly, spellCheck } = this.props;
+    return readOnly ? false : spellCheck;
+  };
+
   renderNode = (props: SlateNodeProps) => {
     const node = this.props.renderNode && this.props.renderNode(props);
     if (node) return node;
@@ -323,7 +330,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
               onImageUploadStop={onImageUploadStop}
               onShowToast={onShowToast}
               readOnly={readOnly}
-              spellCheck={!readOnly}
+              spellCheck={this.isSpellCheckEnabled()}
               uploadImage={uploadImage}
               pretitle={pretitle}
             />
