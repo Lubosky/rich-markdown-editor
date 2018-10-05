@@ -343,12 +343,14 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
 
 const StyledEditor = styled(Editor)`
   background: ${props => props.theme.background};
-  font-family: ${props => props.theme.fontFamily};
-  font-weight: ${props => props.theme.fontWeight};
-  font-size: 1em;
-  line-height: 1.7em;
-  width: 100%;
   color: ${props => props.theme.text};
+  flex: 0;
+  font-family: ${props => props.theme.fontFamily};
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.4;
+  width: 100%;
 
   h1,
   h2,
@@ -356,17 +358,32 @@ const StyledEditor = styled(Editor)`
   h4,
   h5,
   h6 {
-    font-weight: 500;
+    font-family: ${props => props.theme.fontFamilyBold};
+    font-style: normal;
+    font-weight: normal;
   }
 
   ul,
   ol {
-    margin: 0 0.1em;
-    padding-left: 1em;
+    margin: 0;
+    padding: 0;
 
-    ul,
-    ol {
-      margin: 0.1em;
+    li {
+      padding-left: 0;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 1.5em;
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin-left: 1.25em;
+
+    li {
+      padding-left: 0.25em;
     }
   }
 
@@ -404,9 +421,9 @@ const StyledEditor = styled(Editor)`
   }
 
   blockquote {
-    border-left: 3px solid ${props => props.theme.quote};
+    border-left: 1px solid ${props => props.theme.quote};
     margin: 0;
-    padding-left: 10px;
+    padding-left: 1.5em;
     font-style: italic;
   }
 
@@ -419,17 +436,22 @@ const StyledEditor = styled(Editor)`
   }
 
   th {
-    font-weight: bold;
+    font-family: ${props => props.theme.fontFamilyBold};
+    font-style: normal;
+    font-weight: normal;
   }
 
   th,
   td {
-    padding: 5px 20px 5px 0;
+    padding: ${({ theme: { gridSize } }) =>
+      `${gridSize / 2}px ${gridSize * 2}px ${gridSize / 2} 0`};
   }
 
   b,
   strong {
-    font-weight: 600;
+    font-family: ${props => props.theme.fontFamilyBold};
+    font-style: normal;
+    font-weight: normal;
   }
 
   span[data-slate-zero-width] {

@@ -21,12 +21,14 @@ export const base = {
   ...colors,
   fontFamily:
     "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen, Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif",
-  fontWeight: 400,
+  fontFamilyBold:
+    "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen, Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif",
   link: colors.primary,
   placeholder: "#B1BECC",
   textSecondary: "#4E5C6E",
   textLight: colors.white,
   selected: colors.primary,
+  gridSize: 8,
 };
 
 export const light: Theme = {

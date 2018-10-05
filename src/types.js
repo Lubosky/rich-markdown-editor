@@ -62,12 +62,13 @@ export type Theme = {
   greyDark: string,
 
   fontFamily: string,
-  fontWeight: number | string,
+  fontFamilyBold: string,
+  gridSize: number,
   link: string,
   placeholder: string,
-  textSecondary: string,
-  textLight: string,
   selected: string,
+  textLight: string,
+  textSecondary: string,
 
   background: string,
   text: string,
