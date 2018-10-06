@@ -1,5 +1,5 @@
 // @flow
-import type { Element, ElementRef, Node as NodeType } from "react";
+import type { ElementRef, Node as NodeType } from "react";
 import { Value, Change, Node } from "slate";
 import { Editor } from "slate-react";
 
@@ -19,8 +19,8 @@ export type Plugin = {
   onKeyDown?: (SyntheticKeyboardEvent<*>, Change) => *,
 };
 
-export type PortalRef = {
-  current: null | ElementRef<Element<*>>,
+export type Ref = {
+  current: null | ElementRef<*>,
 };
 
 export type SearchResult = {

@@ -18,5 +18,6 @@ export default function getDataTransferFiles(
     dataTransferItemsList = event.target.files;
   }
   // Convert from DataTransferItemsList to the native Array
+  // $FlowIssue
   return Array.prototype.slice.call(dataTransferItemsList);
 }

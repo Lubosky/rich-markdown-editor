@@ -5,6 +5,7 @@ import { Editor, findDOMNode } from "slate-react";
 import { Node, Value } from "slate";
 import styled from "react-emotion";
 import { isEqual, debounce } from "lodash";
+import type { Ref } from "../../types";
 import FormattingToolbar from "./FormattingToolbar";
 import LinkToolbar from "./LinkToolbar";
 
@@ -37,15 +38,21 @@ type State = {
 };
 
 export default class Toolbar extends React.Component<Props, State> {
-  state = {
-    active: false,
-    mouseDown: false,
-    link: undefined,
-    top: "",
-    left: "",
-  };
+  menu: Ref;
 
-  menu: HTMLElement;
+  constructor(props: Props) {
+    super(props);
+
+    this.menu = React.createRef();
+
+    this.state = {
+      active: false,
+      mouseDown: false,
+      link: undefined,
+      top: "",
+      left: "",
+    };
+  }
 
   componentDidMount = () => {
     this.update();
@@ -142,20 +149,21 @@ export default class Toolbar extends React.Component<Props, State> {
       return;
     }
 
+    const menu = this.menu.current;
+    if (!menu) {
+      return;
+    }
+
     const left =
-      rect.left + window.scrollX - this.menu.offsetWidth / 2 + rect.width / 2;
+      rect.left + window.scrollX - menu.offsetWidth / 2 + rect.width / 2;
     newState.top = `${Math.round(
-      rect.top + window.scrollY - this.menu.offsetHeight
+      rect.top + window.scrollY - menu.offsetHeight
     )}px`;
     newState.left = `${Math.round(Math.max(padding, left))}px`;
 
     if (!isEqual(this.state, newState)) {
       this.setState(newState);
     }
-  };
-
-  setRef = (ref: HTMLElement) => {
-    this.menu = ref;
   };
 
   render() {
@@ -166,7 +174,7 @@ export default class Toolbar extends React.Component<Props, State> {
 
     return (
       <Portal>
-        <Menu active={this.state.active} innerRef={this.setRef} style={style}>
+        <Menu active={this.state.active} innerRef={this.menu} style={style}>
           {this.state.link ? (
             <LinkToolbar
               {...this.props}

@@ -4,7 +4,7 @@ import { Value, Change, Schema, Text } from "slate";
 import { Editor } from "slate-react";
 import styled from "react-emotion";
 import { ThemeProvider } from "emotion-theming";
-import type { SlateNodeProps, Plugin, PortalRef, SearchResult } from "./types";
+import type { SlateNodeProps, Plugin, Ref, SearchResult } from "./types";
 import { light as lightTheme, dark as darkTheme } from "./theme";
 import defaultSchema from "./schema";
 import getDataTransferFiles from "./lib/getDataTransferFiles";
@@ -29,7 +29,7 @@ type Props = {
   placeholder: string,
   pretitle?: string,
   plugins?: Plugin[],
-  portalRef?: PortalRef,
+  portalRef?: Ref,
   autoFocus?: boolean,
   hideBlockInsert?: boolean,
   readOnly?: boolean,

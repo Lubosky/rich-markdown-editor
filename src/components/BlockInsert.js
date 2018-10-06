@@ -7,11 +7,11 @@ import { PlusIcon } from "outline-icons";
 import { Portal } from "react-portal";
 import { isEqual } from "lodash";
 import { withTheme } from "emotion-theming";
-import type { PortalRef } from "../types";
+import type { Ref } from "../types";
 
 type Props = {
   editor: Editor,
-  forwardedRef?: PortalRef,
+  forwardedRef?: Ref,
   theme: Object,
 };
 
