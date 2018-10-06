@@ -62,13 +62,14 @@ export default class Toolbar extends React.Component<Props, State> {
   };
 
   componentWillUnmount = () => {
+    this.update.cancel();
     window.removeEventListener("mousedown", this.handleMouseDown);
     window.removeEventListener("mouseup", this.handleMouseUp);
   };
 
-  componentDidUpdate = debounce(() => {
+  componentDidUpdate = () => {
     this.update();
-  }, 100);
+  };
 
   hideLinkToolbar = () => {
     this.setState({ link: undefined });
@@ -90,7 +91,7 @@ export default class Toolbar extends React.Component<Props, State> {
     this.setState({ link });
   };
 
-  update = () => {
+  update = debounce(() => {
     const { value } = this.props;
     const link = getLinkInSelection(value);
     const selection = window.getSelection();
@@ -165,7 +166,7 @@ export default class Toolbar extends React.Component<Props, State> {
     if (!isEqual(this.state, newState)) {
       this.setState(newState);
     }
-  };
+  }, 100);
 
   render() {
     const style = {
