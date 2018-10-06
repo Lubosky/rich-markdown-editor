@@ -58,7 +58,7 @@ export default class Toolbar extends React.Component<Props, State> {
     window.removeEventListener("mouseup", this.handleMouseUp);
   };
 
-  componentWillUpdate = debounce(() => {
+  componentDidUpdate = debounce(() => {
     this.update();
   }, 100);
 
