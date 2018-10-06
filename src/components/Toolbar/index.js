@@ -26,6 +26,7 @@ function getLinkInSelection(value): any {
 
 type Props = {
   editor: Editor,
+  forwardedRef?: Ref,
   value: Value,
 };
 
@@ -43,7 +44,7 @@ export default class Toolbar extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.menu = React.createRef();
+    this.menu = props.forwardedRef || React.createRef();
 
     this.state = {
       active: false,

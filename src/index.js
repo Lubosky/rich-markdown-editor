@@ -30,6 +30,7 @@ type Props = {
   pretitle?: string,
   plugins?: Plugin[],
   portalRef?: Ref,
+  toolbarRef?: Ref,
   autoFocus?: boolean,
   hideBlockInsert?: boolean,
   readOnly?: boolean,
@@ -268,6 +269,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
       pretitle,
       placeholder,
       portalRef,
+      toolbarRef,
       onSave,
       uploadImage,
       onSearchLink,
@@ -301,7 +303,11 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
               this.editor && <Contents editor={this.editor} />}
             {!readOnly &&
               this.editor && (
-                <Toolbar value={this.state.editorValue} editor={this.editor} />
+                <Toolbar
+                  value={this.state.editorValue}
+                  editor={this.editor}
+                  forwardedRef={toolbarRef}
+                />
               )}
             {!readOnly &&
               !hideBlockInsert &&
