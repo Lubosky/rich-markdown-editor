@@ -198,7 +198,7 @@ const Separator = styled.div`
 `;
 
 const Bar = styled(Flex)`
-  z-index: 100;
+  z-index: 300;
   animation: ${fadeIn} 150ms ease-in-out;
   position: relative;
   align-items: center;
