@@ -35,8 +35,8 @@ type State = {
 @keydown
 class LinkToolbar extends React.Component<Props, State> {
   wrapper: ?HTMLElement;
-  input: HTMLInputElement;
-  firstDocument: HTMLElement;
+  input: ?HTMLInputElement;
+  firstDocument: ?HTMLElement;
   originalValue: string = "";
   state = {
     isEditing: false,
@@ -85,7 +85,7 @@ class LinkToolbar extends React.Component<Props, State> {
 
     // otherwise, we're clicking outside
     ev.preventDefault();
-    this.save(this.input.value);
+    this.save(this.input ? this.input.value : "");
   };
 
   search = async (term: string) => {

@@ -298,26 +298,23 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
       >
         <ThemeProvider theme={theme}>
           <React.Fragment>
-            {toc &&
-              this.state.editorLoaded &&
-              this.editor && <Contents editor={this.editor} />}
-            {!readOnly &&
-              this.editor && (
-                <Toolbar
-                  value={this.state.editorValue}
-                  editor={this.editor}
-                  forwardedRef={toolbarRef}
-                />
-              )}
-            {!readOnly &&
-              !hideBlockInsert &&
-              this.editor && (
-                <BlockInsert
-                  editor={this.editor}
-                  forwardedRef={portalRef}
-                  onInsertImage={this.insertImageFile}
-                />
-              )}
+            {toc && this.state.editorLoaded && this.editor && (
+              <Contents editor={this.editor} />
+            )}
+            {!readOnly && this.editor && (
+              <Toolbar
+                value={this.state.editorValue}
+                editor={this.editor}
+                forwardedRef={toolbarRef}
+              />
+            )}
+            {!readOnly && !hideBlockInsert && this.editor && (
+              <BlockInsert
+                editor={this.editor}
+                forwardedRef={portalRef}
+                onInsertImage={this.insertImageFile}
+              />
+            )}
             <StyledEditor
               innerRef={this.setEditorRef}
               plugins={this.plugins}
@@ -458,10 +455,6 @@ const StyledEditor = styled(Editor)`
     font-family: ${props => props.theme.fontFamilyBold};
     font-style: normal;
     font-weight: normal;
-  }
-
-  span[data-slate-zero-width] {
-    display: inline-block;
   }
 `;
 

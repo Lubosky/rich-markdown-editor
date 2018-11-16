@@ -147,7 +147,7 @@ export default class Toolbar extends React.Component<Props, State> {
       rect = range.getBoundingClientRect();
     }
 
-    if (!rect || (rect.top === 0 && rect.left === 0)) {
+    if (!rect || !this.menu || (rect.top === 0 && rect.left === 0)) {
       return;
     }
 

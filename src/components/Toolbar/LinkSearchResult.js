@@ -4,7 +4,6 @@ import styled from "react-emotion";
 import { NextIcon } from "outline-icons";
 
 type Props = {
-  innerRef?: Function,
   onClick: (SyntheticEvent<*>) => *,
   title: string,
 };
